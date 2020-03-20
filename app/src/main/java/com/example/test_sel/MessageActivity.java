@@ -1,11 +1,5 @@
 package com.example.test_sel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,20 +11,33 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.test_sel.Callback.CallBack_CoursesReady;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.test_sel.Callback.CallBack_ArrayReady;
 import com.example.test_sel.Classes.CardInfo;
-import com.example.test_sel.Classes.Course;
+import com.example.test_sel.Classes.Message;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class postActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
 
     private RecyclerView courseRecyclerView;
     private PostAdapter postSearchAdapter;
     private ImageView image_mentoring;
-    ArrayList<Course> myCourses;
+    private ArrayList<Message> messages;
     Toolbar toolBar;
+
+    private FirebaseAuth fAuth;
+    private String userId;
+    private DatabaseReference refUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,9 @@ public class postActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         image_mentoring = findViewById(R.id.image_mentoring);
 
+        fAuth = FirebaseAuth.getInstance();
+        userId = fAuth.getCurrentUser().getUid();
+        refUser = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
 
         //TOP TOLL BAR
@@ -52,12 +62,11 @@ public class postActivity extends AppCompatActivity {
 //            userId = getIntent().getExtras().getString("userid");
         }
 
-
-        MyFireBase.getCourses(new CallBack_CoursesReady() {
+        MyFireBase.getMessages(refUser.child("messages"), new CallBack_ArrayReady<Message>() {
             @Override
-            public void courseReady(ArrayList<Course> courses) {
-                myCourses = courses;
-                buildCourseList(courses);
+            public void arrayReady(ArrayList<Message> array) {
+                messages = array;
+                buildMessageList(messages);
             }
 
             @Override
@@ -85,23 +94,23 @@ public class postActivity extends AppCompatActivity {
     }
 
     private void filter(String text) {
-        ArrayList<Course> courseArrRec = new ArrayList<>();
-        for (Course u : myCourses) {
-            if (u.getCourseName().toLowerCase().contains(text.toLowerCase())) {
-                courseArrRec.add(u);
+        ArrayList<Message> messageArrRec = new ArrayList<>();
+        for (Message message : messages) {
+            if (message.getCourseName().toLowerCase().contains(text.toLowerCase())) {
+                messageArrRec.add(message);
             }
-            if (u.getCourseCode().contains(text.toLowerCase())) {
-                courseArrRec.add(u);
+            if (message.getCourseCode().contains(text.toLowerCase())) {
+                messageArrRec.add(message);
             }
         }
 
-        buildCourseList(courseArrRec);
+        buildMessageList(messageArrRec);
 
     }
 
-    private void buildCourseList(ArrayList<Course> courses) {
-        ArrayList<CardInfo> cards = new ArrayList<>(courses.size());
-        for (CardInfo cardInfo : courses) {
+    private void buildMessageList(ArrayList<Message> messagesList) {
+        ArrayList<CardInfo> cards = new ArrayList<>(messagesList.size());
+        for (CardInfo cardInfo : messagesList) {
             cards.add(cardInfo != null ? cardInfo : null);
         }
         courseRecyclerView = findViewById(R.id.RCL_courseList);

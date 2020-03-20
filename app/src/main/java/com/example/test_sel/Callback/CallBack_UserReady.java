@@ -1,8 +1,10 @@
 package com.example.test_sel.Callback;
 
-public interface CallBack_StringValueReady {
+import com.example.test_sel.Classes.User;
 
-    void stringValueReady(String value);
+public interface CallBack_UserReady {
+
+    void userReady(User user);
     void error();
 
 }
