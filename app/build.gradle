@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.test_sel"
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+apply plugin: 'com.android.application'
+// Add this line
+apply plugin: 'com.google.gms.google-services'
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //country-code
+    implementation 'com.github.joielechong:countrycodepicker:2.4.1'
+
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    //   implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
+    implementation 'com.firebase:firebase-client-android:2.5.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    //  implementation 'com.google.firebase:firebase-database:19.2.1'
+
+    //bottom toll bar
+    implementation 'com.google.android.material:material:1.1.0'
+
+    //recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
+
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //circle image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+
+//    implementation 'com.android.support:design:27.1.1'
+
+    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
+
+
+    //picasso library to retrive images
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    //card view
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //recyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //picasso library to retrive images
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.firebaseui:firebase-ui-database:0.4.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //for schedule
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
+
+}

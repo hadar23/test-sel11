@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">test-sel</string>
+    <string name="courses_list">Courses</string>
+    <string name="users_list">Users</string>
+    <string name="yesEdit">editMentoring</string>
+
+
+    <string-array name="academy">
+        <item>choose your academy</item>
+        <item>Afeka</item>
+    </string-array>
+
+    <string-array name="engineering">
+        <item>choose your engineering</item>
+        <item>Software</item>
+        <item>Electrical</item>
+        <item>Machines </item>
+        <item>Medical Engineering</item>
+        <item>Basic Sciences</item>
+        <item>Biomedical</item>
+
+    </string-array>
+</resources>

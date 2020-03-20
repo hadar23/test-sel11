@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout">
+
+
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/cropped"
+             />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:clickable="true"
+            app:civ_border_width="3dp"
+            app:civ_border_color="#FFFFFFFF"
+            android:id="@+id/img_profile"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-130dp"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person" />
+
+        <ImageView
+            android:id="@+id/img_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_profile"
+            android:layout_marginTop="-50dp"
+            android:layout_marginRight="70dp"
+            android:layout_toRightOf="@id/img_profile"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_cover_image"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+
+            <TextView
+                android:id="@+id/txt_fill_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="65dp"
+                android:text="bob habanay"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ic_whatsapp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_whatsapp"
+                android:layout_marginTop="65dp"
+                android:layout_marginRight="30dp"
+                android:layout_toLeftOf="@id/txt_fill_name"
+                />
+
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="description"
+            android:layout_below="@+id/layout"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/side_menu"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_Description">
+
+       <RelativeLayout
+           android:layout_marginTop="10dp"
+           android:id="@+id/rel_layout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:id="@+id/txt_head_phone"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="10dp"
+               android:text="Phone"
+               android:layout_alignParentLeft="true"
+               android:drawablePadding="5dp"
+               android:textSize="18sp"
+               android:drawableLeft="@drawable/ic_phone"
+               />
+
+           <TextView
+               android:id="@+id/txt_fill_phone"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="5dp"
+               android:layout_alignParentLeft="true"
+               android:text="bikash@smallacademy.co"
+               android:textColor="@color/colorblack"
+               android:textSize="18sp"
+               android:layout_below="@+id/txt_head_phone"
+               />
+
+           <TextView
+               android:id="@+id/txt_head_academy"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="10dp"
+               android:text="Academy"
+               android:layout_alignParentLeft="true"
+               android:drawablePadding="5dp"
+               android:textSize="18sp"
+               android:drawableLeft="@drawable/ic_school"
+               android:layout_below="@+id/txt_fill_phone"
+               />
+
+           <TextView
+               android:id="@+id/txt_fill_academy"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="5dp"
+               android:text="bikash@smallacademy.co"
+               android:textColor="@color/colorblack"
+               android:textSize="18sp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/txt_head_academy"/>
+
+           <TextView
+               android:id="@+id/txt_head_start_year"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="10dp"
+               android:text="Start Year"
+               android:layout_alignParentLeft="true"
+               android:drawablePadding="5dp"
+               android:textSize="18sp"
+               android:drawableLeft="@drawable/ic_access_time"
+               android:layout_below="@+id/txt_fill_academy"
+               />
+
+           <TextView
+               android:id="@+id/txt_fill_start_year"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="5dp"
+               android:text="bikash@smallacademy.co"
+               android:textColor="@color/colorblack"
+               android:textSize="18sp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/txt_head_start_year"
+               />
+           <TextView
+               android:id="@+id/txt_head_engineering"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="10dp"
+               android:text="Engineering"
+               android:layout_alignParentLeft="true"
+               android:drawablePadding="5dp"
+               android:textSize="18sp"
+               android:drawableLeft="@drawable/ic_star"
+               android:layout_below="@+id/txt_fill_start_year"
+               />
+
+           <TextView
+               android:id="@+id/txt_fill_engineering"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="5dp"
+               android:text="bikash@smallacademy.co"
+               android:textColor="@color/colorblack"
+               android:textSize="18sp"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/txt_head_engineering"
+               />
+     <ImageView
+         android:id="@+id/img_add"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/ic_add_circle"
+         android:layout_below="@+id/txt_fill_engineering"
+         android:layout_marginLeft="50dp"
+         android:layout_marginTop="10dp"
+         android:layout_alignParentLeft="true"/>
+
+
+           <TextView
+               android:id="@+id/txt_head_allCourses"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="95dp"
+               android:layout_marginTop="15dp"
+               android:text="all courses I mentor"
+               android:layout_alignParentLeft="true"
+               android:textSize="18sp"
+               android:layout_below="@+id/txt_fill_engineering"
+
+               />
+
+           <ImageView
+               android:id="@+id/img_schedule"
+               android:layout_width="35dp"
+               android:layout_height="35dp"
+               android:src="@drawable/ic_schedule"
+               android:layout_below="@+id/img_add"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="10dp"
+               android:layout_alignParentLeft="true"/>
+
+
+           <TextView
+               android:id="@+id/txt_head_schedule"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="95dp"
+               android:layout_marginTop="15dp"
+               android:text=" my schedule"
+               android:layout_alignParentLeft="true"
+               android:textSize="18sp"
+               android:layout_below="@+id/img_add"
+
+               />
+
+
+
+
+
+
+       </RelativeLayout>
+
+    </ScrollView>
+
+
+    <ImageView
+        android:id="@+id/img_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_Description"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        app:srcCompat="@drawable/ic_edit" />
+
+</RelativeLayout>

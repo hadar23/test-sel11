@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F0EFEF"
+    tools:context=".AddMentoringActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/side_menu"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ImageView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/IMG_signup_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/img_offer_mentor">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/TXT_course_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/IMG_signup_img"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:elevation="5dp"
+        android:text="course name"
+        android:textColor="@color/colorblack"
+        android:textSize="18dp"
+        android:textDirection="ltr"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp" />
+
+    <TextView
+        android:id="@+id/TXT_code_course"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/TXT_course_name"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:elevation="5dp"
+        android:text="course code"
+        android:textColor="@color/colorblack"
+        android:textSize="18dp"
+        android:textDirection="ltr"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp" />
+
+
+    <EditText
+        android:id="@+id/EDT_course_grade"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/TXT_code_course"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:elevation="5dp"
+        android:hint="my grade"
+        android:textColor="@color/colorblack"
+        android:textSize="18dp"
+        android:textDirection="ltr"
+        android:inputType="number"
+        android:paddingLeft="15dp" />
+    <EditText
+        android:id="@+id/EDT_course_level"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/EDT_course_grade"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:elevation="5dp"
+        android:maxLength="100"
+        android:maxLines="2"
+        android:hint="few words on my level in that course"
+        android:textColor="@color/colorblack"
+        android:textSize="18dp"
+        android:textDirection="ltr"
+        android:paddingLeft="15dp" />
+
+
+
+
+    <Button
+        android:id="@+id/BTNadd"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/EDT_course_level"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:backgroundTint="#B471F0"
+        android:elevation="5dp"
+        android:text="ADD"
+        android:textColor="#131212"
+        android:textSize="23sp"
+        />
+
+    <ProgressBar
+        android:id="@+id/pbarReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BTNadd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible">
+
+    </ProgressBar>
+
+
+</RelativeLayout>

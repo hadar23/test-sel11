@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSignUpActivity">
+
+    <ImageView
+        android:id="@+id/IMG_signup_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/img_sign_up">
+
+    </ImageView>
+
+    <EditText
+        android:id="@+id/EDT_full_nameET"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:drawablePadding="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_below="@+id/IMG_signup_img"
+        android:hint="full name"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textDirection="ltr"
+        android:drawableLeft="@drawable/ic_person"
+        />
+
+    <EditText
+        android:id="@+id/EDT_start_year"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:elevation="5dp"
+        android:drawablePadding="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_below="@+id/EDT_full_nameET"
+        android:hint="start year"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:inputType="date"
+        android:textDirection="ltr"
+        android:drawableLeft="@drawable/ic_access_time"
+
+        />
+
+    <EditText
+        android:id="@+id/EDT_phone_numberET"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:elevation="5dp"
+        android:drawablePadding="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_below="@+id/EDT_start_year"
+        android:text="05212354232"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:inputType="phone"
+        android:textDirection="ltr"
+        android:drawableLeft="@drawable/ic_phone"
+        android:enabled="false"
+        />
+
+    <Spinner
+        android:id="@+id/SPN_academy"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:elevation="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_below="@+id/EDT_phone_numberET"
+        android:paddingLeft="15dp"
+        android:entries="@array/academy"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textDirection="ltr"
+        android:drawableLeft="@drawable/ic_school"
+
+        />
+
+    <Spinner
+        android:id="@+id/SPN_engineering"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:elevation="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_below="@+id/SPN_academy"
+        android:paddingLeft="15dp"
+        android:entries="@array/engineering"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textDirection="ltr"
+        android:drawableLeft="@drawable/ic_school"
+        />
+
+
+    <EditText
+        android:id="@+id/EDT_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="tell about yourself"
+        android:elevation="5dp"
+        android:drawablePadding="5dp"
+        android:background="@drawable/rounded_edit_txt"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="200"
+        android:maxLines="4"
+        android:lines="4"
+        android:scrollbars="vertical"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="15dp"
+        android:layout_below="@+id/SPN_engineering"
+        android:textDirection="ltr"
+        android:gravity="top"/>
+
+
+
+    <Button
+        android:id="@+id/BTNsign_up"
+        android:layout_below="@+id/EDT_description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/colorDialog"
+        android:textColor="@color/colorhtxt"
+        android:elevation="5dp"
+        android:text="save"
+        android:background="@drawable/rounded_edit_txt"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+
+    <ProgressBar
+        android:id="@+id/pbarReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_below="@id/BTNsign_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        >
+
+    </ProgressBar>
+
+
+</RelativeLayout>
