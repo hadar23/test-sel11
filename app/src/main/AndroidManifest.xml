@@ -18,13 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
-        <activity android:name=".homePageActivity">
-
-
-        </activity>
-
+        <activity android:name=".homePageActivity"></activity>
         <activity android:name=".allMyCoursesActivity" />
+        <activity android:name=".helpActivity" />
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".nada.MainActivity" />
         <activity android:name=".nada.dialogActivity" />

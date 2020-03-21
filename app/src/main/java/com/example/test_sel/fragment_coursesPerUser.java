@@ -1,5 +1,6 @@
 package com.example.test_sel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,7 +30,8 @@ public class fragment_coursesPerUser extends Fragment {
     private EditText editText;
     ArrayList<CoursePerUser> myUsersPerCourses;
     DatabaseReference myRef;
-    String key = "";
+
+    String keycourse = "",keyuser="";
     //    ArrayList<CardInfo> cards = new ArrayList<>(myUsers.size());
     private View view;
 
@@ -49,23 +51,25 @@ public class fragment_coursesPerUser extends Fragment {
         //get from intente yhet coder key
         Bundle args = getArguments();
         if (args != null) {
-            key = args.getString("kind", "");
-            Log.d("dag", key);
+
+            keycourse = args.getString("comeFromCourseFreg", "");
+            keyuser = args.getString("comeFromUserFreg", "");
+
         }
+        if (!keycourse.equals(""))
+        myRef = FirebaseDatabase.getInstance().getReference("Courses").child(keycourse).child("usersList");
 
 
-        myRef = FirebaseDatabase.getInstance().getReference("Courses").child(key).child("usersList");
+        if (!keyuser.equals(""))
+            myRef = FirebaseDatabase.getInstance().getReference("Users").child(keyuser).child("courses");
 
-        Log.d("dag", key);
-        // run some code
-
+        //add list of all user that do mentor to the course
         MyFireBase.getCoursesPerUser(myRef, new CallBack_ArrayReady<CoursePerUser>() {
             @Override
             public void arrayReady(ArrayList<CoursePerUser> coursePerUsers) {
                 myUsersPerCourses = coursePerUsers;
                 buildUsersList(coursePerUsers, inflater);
             }
-
             @Override
             public void error() {
             }

@@ -1,5 +1,6 @@
 package com.example.test_sel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -41,7 +42,7 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
     private Context context;
     private Intent intent;
     private int myMenu = 0;
-    Boolean isSearchByUser=false;
+    Boolean isSearchByUser = false;
 
 
     // data is passed into the constructor
@@ -60,10 +61,10 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
     }
 
 
-
     public void getmyValue(ArrayList<User> myUsers) {
 
     }
+
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -79,10 +80,12 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
 
         Mygrade = String.valueOf(pInfo.ThirdRow());
 
+
         holder.txt_titleUser.setText(String.valueOf(pInfo.Title()));
         holder.txt_firstRow.setText(pInfo.FirstRow());
         holder.txt_secondRow.setText(String.valueOf(pInfo.SecondRow()));
         holder.txt_thirdRow.setText(String.valueOf(pInfo.ThirdRow()));
+        holder.txt_lastRow.setText(String.valueOf(pInfo.LastRow()));
 
         //if we came from search by user
         if (intent != null) {
@@ -138,7 +141,6 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
         }
 
 
-
         holder.img_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +164,7 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
                                 //handle menu2 click
 
                                 Toast.makeText(context, "schedule", Toast.LENGTH_SHORT).show();
-
+                                holder.startActivityForSchedule();
                                 return true;
                             case R.id.message:
                                 //handle menu3 click
@@ -238,43 +240,65 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
 
         @Override
         public void onClick(View view) {
+            Toast.makeText(context, kind, Toast.LENGTH_SHORT).show();
+
+            if (kind.equals("userPerCourse")||(kind.equals("coursePerUser"))) {
+
+                startActivityForSchedule();
+            }
 //            Fragment fragment = null;
             if (kind.equals("user")) {
-                startActivityForProfile();
-            }
-            if (kind.equals("course")) {
+                startActivityForSchedule();
                 Intent intent = new Intent(context, frag_activity.class);
-                intent.putExtra("key",txt_secondRow.getText());
+                intent.putExtra("key", userPostId);
+                intent.putExtra("type", "comeFromUserFreg");
                 context.startActivity(intent);
-//           fragment = new fragment_users();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("String", "String text");
-//
-//                fragment.setArguments(bundle);
+                ((Activity) context).finish();
             }
-//            if (intent.getStringExtra("kind").equals("addCourse")) {
-//                startActivityForAddMentoring(false);
-//            }
 
+            if (kind.equals("course")) {
+                if (txt_thirdRow.getText().toString().trim().equals("0")) {
+                    Toast.makeText(context, "this course has no mentoring", Toast.LENGTH_SHORT).show();
+
+                } else {
+//                    Toast.makeText(context, "this course has  mentoring", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, frag_activity.class);
+                    intent.putExtra("key", txt_secondRow.getText());
+                    intent.putExtra("type", "comeFromCourseFreg");
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                }
+            }
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+
+
         }
 
         public void startActivityForProfile() {
             Intent intent = new Intent(context, ProfileActivity.class);
             intent.putExtra("visiitUserId", userPostId);
             context.startActivity(intent);
+            ((Activity) context).finish();
         }
 
-        public void startActivityForAddMentoring(Boolean isEdit  ) {
+        public void startActivityForSchedule() {
+            Intent intent = new Intent(context, ScheduleActivity.class);
+            intent.putExtra("isHost", false);
+            context.startActivity(intent);
+            ((Activity) context).finish();
+        }
+
+        public void startActivityForAddMentoring(Boolean isEdit) {
             Intent intent = new Intent(context, AddMentoringActivity.class);
             intent.putExtra("codeC", txt_secondRow.getText());
             intent.putExtra("nameC", txt_firstRow.getText());
-            if(isEdit){
+            if (isEdit) {
                 intent.putExtra("gradeC", Mygrade);
                 intent.putExtra("levelC", txt_lastRow.getText());
-                intent.putExtra("yesEdit",true);
+                intent.putExtra("yesEdit", true);
             }
             context.startActivity(intent);
+            ((Activity) context).finish();
         }
 
         //send Message to user
@@ -286,11 +310,12 @@ public class PostSearchAdapter extends RecyclerView.Adapter<PostSearchAdapter.Vi
 
 
         }
-//delete item from list
+
+        //delete item from list
         public void deleteItem(String s, final int itemPos) {
 
-            DatabaseReference refUser= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-            MyFireBase.addToCounter(refUser, "coursesCounter",-1);
+            DatabaseReference refUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+            MyFireBase.addToCounter(refUser, "coursesCounter", -1);
             refUser.child("courses").child(s).removeValue()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

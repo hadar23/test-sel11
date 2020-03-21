@@ -4,6 +4,7 @@ import com.example.test_sel.Classes.CardInfo;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Message implements Serializable, CardInfo {
     private String hostUserId;
@@ -184,7 +185,8 @@ public class Message implements Serializable, CardInfo {
     @Override
     public String SecondRow() {
         String text = "date of meeting: ";
-        String date = String.format("%s-%s-%s, %s:00:00", meetingYear, meetingMonth,meetingDay, meetingHour);
+        String hour = String.format(Locale.ENGLISH, "%02d", Integer.parseInt(meetingHour));
+        String date = String.format("%s-%s-%s, %s:00:00", meetingYear, meetingMonth, meetingDay, hour);
         return text + date;
     }
 
@@ -192,14 +194,14 @@ public class Message implements Serializable, CardInfo {
     public String ThirdRow() {
         Calendar time = Calendar.getInstance();
         time.clear();
-        time.set(Calendar.MILLISECOND, Integer.parseInt(messageTimeInMilli));
+        time.setTimeInMillis(Long.parseLong(messageTimeInMilli));
         String text = "date of message: ";
         String year = String.valueOf(time.get(Calendar.YEAR));
         String month = String.valueOf(time.get(Calendar.MONTH));
         String day = String.valueOf(time.get(Calendar.DAY_OF_MONTH));
-        String hour = String.valueOf(time.get(Calendar.HOUR));
-        String minute = String.valueOf(time.get(Calendar.MINUTE));
-        String second = String.valueOf(time.get(Calendar.SECOND));
+        String hour = String.format(Locale.ENGLISH, "%02d", time.get(Calendar.HOUR_OF_DAY));
+        String minute = String.format(Locale.ENGLISH, "%02d",time.get(Calendar.MINUTE));
+        String second = String.format(Locale.ENGLISH, "%02d",time.get(Calendar.SECOND));
         String millisecond = String.valueOf(time.get(Calendar.MILLISECOND));
 
         String date = String.format("%s-%s-%s, %s:%s:%s.%s", year, month, day, hour, minute, second, millisecond);

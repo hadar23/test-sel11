@@ -122,6 +122,7 @@ public class allMyCoursesActivity extends AppCompatActivity {
                 i.putExtra("userId", userId);
 
                 startActivity(i);
+                finish();
 
             }
         });

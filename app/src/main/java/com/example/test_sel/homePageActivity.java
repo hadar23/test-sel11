@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class homePageActivity extends AppCompatActivity {
     GridLayout mainGrid;
+    Context context = this;
     private Toolbar toolBar;
 
     @Override
@@ -76,7 +78,9 @@ public class homePageActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (finalI) {
                         case 0:
-                            startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
+                            Intent intent = new Intent(context, ScheduleActivity.class);
+                            intent.putExtra("isHost", true);
+                            startActivity(intent);
                             break;
                         case 1:
                             startActivity(new Intent(getApplicationContext(),postActivity.class));
@@ -92,7 +96,7 @@ public class homePageActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                             break;
                         case 5:
-                            startActivity(new Intent(getApplicationContext(), allMyCoursesActivity.class));
+                            startActivity(new Intent(getApplicationContext(), helpActivity.class));
                             break;
                     }
                 }

@@ -42,10 +42,10 @@ public class ScheduleActivity extends AppCompatActivity {
     private Context context = this;
     private String hostUserId;
     private String hostUserName;
-    private String guestUserId;
-    private String guestUserName;
-    private String courseCode;
-    private String courseName;
+    private String guestUserId = "";
+    private String guestUserName = "";
+    private String courseCode = "";
+    private String courseName = "";
     private boolean isHost = false;
 
     private HashMap<String, RecurrentFreeHour> recurrentFreeHours = new HashMap<>();
@@ -56,15 +56,38 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        isHost = getIntent().getExtras().getBoolean("isHost");
+
         fAuth = FirebaseAuth.getInstance();
-        hostUserId = fAuth.getCurrentUser().getUid();
+        if(isHost) {
+            hostUserId = fAuth.getCurrentUser().getUid();
+        } else{
+            guestUserId = fAuth.getCurrentUser().getUid();
+        }
+
         refFreeHoursUser = FirebaseDatabase.getInstance().getReference().child("Users").child(hostUserId);
-        refMeetingsUser = FirebaseDatabase.getInstance().getReference().child("Users").child(hostUserId);
+        if(isHost) {
+            refMeetingsUser = FirebaseDatabase.getInstance().getReference().child("Users").child(hostUserId);
+        }else{
+            refMeetingsUser = FirebaseDatabase.getInstance().getReference().child("Users").child(guestUserId);
+
+        }
 
         MyFireBase.getStringValue(refFreeHoursUser, "fullName", new CallBack_StringValueReady() {
             @Override
             public void stringValueReady(String value) {
                 hostUserName = value;
+            }
+
+            @Override
+            public void error() {
+
+            }
+        });
+        MyFireBase.getStringValue(refMeetingsUser, "fullName", new CallBack_StringValueReady() {
+            @Override
+            public void stringValueReady(String value) {
+                guestUserName = value;
             }
 
             @Override
@@ -106,6 +129,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
         String year = String.valueOf(calendar.get(Calendar.YEAR));
         String month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        readMeetingsFromFireBase(year, month);
         readOneTimeFreeHoursFromFireBase(year, month);
         readRecurringFreeHoursFromFireBase();
 

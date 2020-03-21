@@ -28,8 +28,8 @@ public class fragment_users extends Fragment {
     private RecyclerView userRecyclerView;
     private PostSearchAdapter postSearchAdapter;
     private EditText editText;
-    ArrayList<User> myUsers;
-    ArrayList<CoursePerUser> myUsersCourse;
+    ArrayList<User> myUsers=new ArrayList<>();
+    ArrayList<CoursePerUser> myUsersCourse,tempList;
     DatabaseReference myRef;
     //    ArrayList<CardInfo> cards = new ArrayList<>(myUsers.size());
     private View view;
@@ -65,21 +65,25 @@ public class fragment_users extends Fragment {
             public void arrayReady(ArrayList<User> users) {
                 for (User myUser1 : users) {
                     if (Integer.parseInt(myUser1.getCoursesCounter()) > 0) {
+                        myUsers.add(myUser1);
                         Log.d("ga",myUser1.getCoursesCounter());
+                        buildUsersList(myUsers, inflater);
                        // myUsers.add(myUser1);
-                        myRef = FirebaseDatabase.getInstance().getReference("Users").child(myUser1.getUserId()).child("courses");
-                        MyFireBase.getCoursesPerUser(myRef, new CallBack_ArrayReady<CoursePerUser>() {
-                            @Override
-                            public void arrayReady(ArrayList<CoursePerUser> courses) {
-//                                myUser.set
-                                myUsersCourse = courses;
-                                buildUsersList(myUsersCourse, inflater);
-                            }
-
-                            @Override
-                            public void error() {
-                            }
-                        });
+//                        myRef = FirebaseDatabase.getInstance().getReference("Users").child(myUser1.getUserId()).child("courses");
+//                        MyFireBase.getCoursesPerUser(myRef, new CallBack_ArrayReady<CoursePerUser>() {
+//                            @Override
+//                            public void arrayReady(ArrayList<CoursePerUser> courses) {
+////                                myUser.set
+////                                tempList=courses;
+////                                myUsersCourse.addAll() = courses;
+//                                myUsersCourse=courses;
+//                                buildUsersList(myUsersCourse, inflater);
+//                            }
+//
+//                            @Override
+//                            public void error() {
+//                            }
+//                        });
                     }
                 }
             }
@@ -114,9 +118,9 @@ public class fragment_users extends Fragment {
     }
 
     private void filter(String text, LayoutInflater inflater) {
-        ArrayList<CoursePerUser> userArrRec = new ArrayList<>();
-        for (CoursePerUser u : myUsersCourse) {
-            if (u.getCourseName().toLowerCase().contains(text.toLowerCase())) {
+        ArrayList<User> userArrRec = new ArrayList<>();
+        for (User u : myUsers) {
+            if (u.getFullName().toLowerCase().contains(text.toLowerCase())) {
                 userArrRec.add(u);
             }
         }
@@ -125,7 +129,7 @@ public class fragment_users extends Fragment {
 
     }
 
-    private void buildUsersList(ArrayList<CoursePerUser> users, LayoutInflater inflater) {
+    private void buildUsersList(ArrayList<User> users, LayoutInflater inflater) {
         ArrayList<CardInfo> cards = new ArrayList<>(users.size());
         for (CardInfo cardInfo : users) {
 //            if ()cards)   if (Integer.parseInt(cardInfo.getCoursesCounter())> 0) {

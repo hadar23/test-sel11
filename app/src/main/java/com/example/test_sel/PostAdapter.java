@@ -118,6 +118,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             // classifiedAd = (CoursePerUser) (mData).get(position);
 
         }
+        if (kind.equals("message")) {
+//            holder.txt_thirdRow.setText("הציון שלי: " + Mygrade);
+//            holder.txt_lastRow.setText(String.valueOf(pInfo.LastRow()));
+            myMenu = R.menu.post_menu;
+            // classifiedAd = (CoursePerUser) (mData).get(position);
+
+        }
 
 
         holder.img_more.setOnClickListener(new View.OnClickListener() {
@@ -230,9 +237,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 //TODO when i clic on
 //            if (isVisit) {
 //nothing because if it is a visit i dont want he coulde edit post
-           if (kind.equals("coursePerUser"))
+            if (kind.equals("coursePerUser"))
                 startActivityForAddMentoring(true);
-             if (kind.equals("course"))
+            if (kind.equals("course"))
                 startActivityForAddMentoring(false);
 
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());

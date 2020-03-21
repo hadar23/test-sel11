@@ -170,18 +170,18 @@ public class User implements CardInfo {
 
     @Override
     public String SecondRow() {
-        return getFullName();
+        return getEngineering();
     }
     //course code
     @Override
     public String ThirdRow() {
-        return getFullName();
+        return getCoursesCounter();
     }
 
 
     @Override
     public String LastRow() {
-        return getDescription();
+        return getCoursesCounter();
     }
 
     //course grade

@@ -5,6 +5,18 @@
     <string name="yesEdit">editMentoring</string>
 
 
+    #helppage
+    <string name="head_descriptipn">application description:</string>
+    <string name="txt_descriptipn">This app allows you to find a suitable mentor for the course you are having trouble with</string>
+    <string name="head_search">Search options:</string>
+    <string name="txt_search">clicking on a Search icon in the top-toll bar or through the homepage reach you to the mentor-search-page.\n \n*you can search by curse-name or course-code\n \n*you can search by users</string>
+    <string name="head_schedule">Schedule:</string>
+    <string name="txt_schedule">Each mentor has a schedule.\nThe mentor marks in his schedule his free hours for mentoring.\nTrainee has the option of looking at the mentor\'s schedule, and to check if there are suitable hours for both.\nIf so, the trainee can send a request to the mentor to make an appointment with him</string>
+    <string name="head_communication">Communication:</string>
+    <string name="txt_communication">Whatsapp</string>
+
+
+
     <string-array name="academy">
         <item>choose your academy</item>
         <item>Afeka</item>

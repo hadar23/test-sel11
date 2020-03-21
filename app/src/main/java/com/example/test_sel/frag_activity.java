@@ -45,38 +45,70 @@ public class frag_activity extends AppCompatActivity {
         toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setTitle("");
+//if user click on serach by course ' and then click on the course card
+        //list of user that to mentor to the spese course
 
         if (getIntent().getStringExtra("key") != null) {
+            if (getIntent().getStringExtra("type").equals("comeFromCourseFreg")) {
+                myRef = FirebaseDatabase.getInstance().getReference("Courses").child(getIntent().getExtras().getString("key"));
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChild("usersList")) {
 
+                            image_mentoring.setImageResource(R.drawable.img_mentoring);
+                            fragment = new fragment_coursesPerUser();
+                            Bundle args = new Bundle();
+                            args.putString("comeFromCourseFreg", getIntent().getExtras().getString("key"));
+                            fragment.setArguments(args);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fregCenter, fragment).commit();
+                        } else {
 
-            myRef = FirebaseDatabase.getInstance().getReference("Courses").child(getIntent().getExtras().getString("key"));
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    if (snapshot.hasChild("usersList")) {
+                            Log.d("dag", "nooo");
+                            Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        image_mentoring.setImageResource(R.drawable.img_mentoring);
-                        fragment = new fragment_coursesPerUser();
-                        Bundle args = new Bundle();
-                        args.putString("kind", getIntent().getExtras().getString("key"));
-                        fragment.setArguments(args);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fregCenter, fragment).commit();
+                    }
+                });
+            }
+
+            ///
+            if (getIntent().getStringExtra("type").equals("comeFromUserFreg")) {
+                myRef = FirebaseDatabase.getInstance().getReference("Users").child(getIntent().getExtras().getString("key")).child("courses");
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+
+                            image_mentoring.setImageResource(R.drawable.img_mentoring);
+                            fragment = new fragment_coursesPerUser();
+                            Bundle args = new Bundle();
+                            args.putString("comeFromUserFreg", getIntent().getExtras().getString("key"));
+                            fragment.setArguments(args);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fregCenter, fragment).commit();
 //
 
-                    } else {
+                        } else {
 
-                        Log.d("dag", "nooo");
-                        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-                        startActivity(i);
+                            Log.d("dag", "nooo");
+                            Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
 
+            }
 
         }
 
@@ -111,9 +143,9 @@ public class frag_activity extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
+
+
 
 //----------------START top toolbar------------------------------------------
 

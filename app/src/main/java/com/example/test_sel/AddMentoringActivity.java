@@ -29,8 +29,8 @@ public class AddMentoringActivity extends AppCompatActivity {
     private TextView TXT_code_course, TXT_course_name;
     private EditText EDT_course_grade, EDT_course_level;
     private Button BTN_add;
-    private String course_code, course_grade, userName="", course_name, course_level,userId;
-    private boolean full = false,courseExist = true;
+    private String course_code, course_grade, userName = "", course_name, course_level, userId;
+    private boolean full = false, courseExist = true;
     private FirebaseUser user;
     private FirebaseAuth fAuth;
     private DatabaseReference refCourses, refUser;
@@ -120,8 +120,6 @@ public class AddMentoringActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(AddMentoringActivity.this, "Course Added.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), allMyCoursesActivity.class));
-                                    finish();
                                 } else {
                                     Toast.makeText(AddMentoringActivity.this, "data is not insert ", Toast.LENGTH_SHORT).show();
                                 }
@@ -135,14 +133,15 @@ public class AddMentoringActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(AddMentoringActivity.this, "Course Added.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), allMyCoursesActivity.class));
-                                    finish();
                                 } else {
                                     Toast.makeText(AddMentoringActivity.this, "data is not insert ", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
                         });
+
+                        startActivity(new Intent(getApplicationContext(), allMyCoursesActivity.class));
+                        finish();
                     }
 
                     @Override
